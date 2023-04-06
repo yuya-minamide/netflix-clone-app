@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/Home.module.css";
 import { Banner, Header } from "../components/index";
 import requests from "@/utils/requests";
 import { Movie } from "../typings";
@@ -55,9 +53,6 @@ export const getServerSideProps = async () => {
 			fetch(requests.fetchDocumentaries).then((res) => res.json()),
 		]);
 
-	// console.log("----------");
-	// console.log(netflixOriginals);
-	// console.log("----------");
 	return {
 		props: {
 			netflixOriginals: netflixOriginals.results,
