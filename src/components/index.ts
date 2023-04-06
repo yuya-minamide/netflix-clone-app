@@ -2,4 +2,4 @@
  * Header
  */
 export { Header } from "./Header/Header";
-export { NavContants } from "./Header/NavContents/NavContants";
+export { NavContents } from "./Header/NavContents/NavContents";

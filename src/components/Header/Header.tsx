@@ -1,7 +1,7 @@
+import { NavContents } from "../index";
 import Image from "next/image";
-import { FiBell, FiSearch } from "react-icons/Fi";
 import Link from "next/link";
-import { NavContants } from "../index";
+import { FiBell, FiSearch } from "react-icons/Fi";
 
 export function Header() {
 	return (
@@ -15,7 +15,7 @@ export function Header() {
 					className="cursor-pointer object-contain"
 				/>
 
-				<NavContants />
+				<NavContents />
 			</div>
 
 			<div className="flex items-center space-x-4 text-sm font-light">
