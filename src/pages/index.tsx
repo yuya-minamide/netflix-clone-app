@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Banner, Header } from "../components/index";
+import { Banner, Header, Row } from "../components/index";
 import requests from "@/utils/requests";
 import { Movie } from "../typings";
 
@@ -30,6 +30,16 @@ export default function Home(props: Props) {
 
 			<main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
 				<Banner netflixOriginals={netflixOriginals} />
+				<section>
+					<Row title="Trending Now" movies={trendingNow} />
+					<Row title="Top Rated" movies={topRated} />
+					<Row title="Action Thrillers" movies={actionMovies} />
+					{/* My List Component */}
+					<Row title="Comedies" movies={comedyMovies} />
+					<Row title="Scary Movies" movies={horrorMovies} />
+					<Row title="Romance Movies" movies={romanceMovies} />
+					<Row title="Documentaries" movies={documentaries} />
+				</section>
 			</main>
 		</div>
 	);
