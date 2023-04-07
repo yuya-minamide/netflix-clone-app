@@ -1,7 +1,7 @@
-import { Movie } from "@/typings";
+import { Thumbnail } from "../index";
 import { useRef, useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { Thumbnail } from "../index";
+import { Movie } from "@/typings";
 
 interface Props {
 	title: string;

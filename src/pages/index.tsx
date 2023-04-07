@@ -1,7 +1,7 @@
-import Head from "next/head";
 import { Banner, Header, Row } from "../components/index";
-import requests from "@/utils/requests";
+import Head from "next/head";
 import { Movie } from "../typings";
+import requests from "@/utils/requests";
 
 interface Props {
 	netflixOriginals: Movie[];
