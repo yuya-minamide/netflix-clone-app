@@ -1,7 +1,7 @@
 import { NavContents } from "../index";
 import Image from "next/image";
 import Link from "next/link";
-import { FiBell, FiSearch } from "react-icons/Fi";
+import { FiBell, FiSearch } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
 export function Header() {
