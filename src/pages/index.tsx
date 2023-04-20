@@ -31,14 +31,17 @@ export default function Home(props: Props) {
 			<main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
 				<Banner netflixOriginals={netflixOriginals} />
 				<section className="md:space-y-24">
-					<Row title="Trending Now" movies={trendingNow} />
-					<Row title="Top Rated" movies={topRated} />
-					<Row title="Action Thrillers" movies={actionMovies} />
-					{/* I'll put my List Component */}
-					<Row title="Comedies" movies={comedyMovies} />
-					<Row title="Scary Movies" movies={horrorMovies} />
-					<Row title="Romance Movies" movies={romanceMovies} />
-					<Row title="Documentaries" movies={documentaries} />
+					{[
+						{ title: "Trending Now", movies: trendingNow },
+						{ title: "Top Rated", movies: topRated },
+						{ title: "Action Thrillers", movies: actionMovies },
+						{ title: "Comedies", movies: comedyMovies },
+						{ title: "Scary Movies", movies: horrorMovies },
+						{ title: "Romance Movies", movies: romanceMovies },
+						{ title: "Documentaries", movies: documentaries },
+					].map(({ title, movies }) => (
+						<Row key={title} title={title} movies={movies} />
+					))}
 				</section>
 			</main>
 		</div>
