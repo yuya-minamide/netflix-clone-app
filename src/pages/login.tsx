@@ -2,7 +2,7 @@ import useAuth from "@/hooks/useAuth";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 interface Inputs {
 	email: string;

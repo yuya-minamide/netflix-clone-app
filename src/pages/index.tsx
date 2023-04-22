@@ -1,8 +1,8 @@
 import { Banner, Header, Row } from "../components/index";
+import useAuth from "@/hooks/useAuth";
 import Head from "next/head";
 import { Movie } from "../typings";
 import requests from "@/utils/requests";
-import useAuth from "@/hooks/useAuth";
 
 interface Props {
 	netflixOriginals: Movie[];
