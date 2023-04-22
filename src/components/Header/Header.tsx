@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiBell, FiSearch } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import useAuth from "@/hooks/useAuth";
 
 export function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
+	const { logout } = useAuth();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -36,7 +38,14 @@ export function Header() {
 				<p className="hidden lg:inline">Kids</p>
 				<FiBell className="h-6 w-6 color-white" />
 				<Link href="/account">
-					<Image src="/assets/netflix-avatar.png" alt="user-avatar" width={40} height={40} className="cursor-pointer rounded" />
+					<Image
+						onClick={logout}
+						src="/assets/netflix-avatar.png"
+						alt="user-avatar"
+						width={40}
+						height={40}
+						className="cursor-pointer rounded"
+					/>
 				</Link>
 			</div>
 		</header>
