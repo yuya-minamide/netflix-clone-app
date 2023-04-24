@@ -14,3 +14,8 @@ export { Banner } from "./Banner/Banner";
  */
 export { Row } from "./Row/Row";
 export { Thumbnail } from "./Row/Thumbnail/Thumbnail";
+
+/**
+ * Modal
+ */
+export { Modal } from "./Modal/Modal";
