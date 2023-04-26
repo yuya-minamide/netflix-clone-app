@@ -1,10 +1,10 @@
+import { modalState } from "@/atoms/modalAtom";
 import { Banner, Header, Modal, Row } from "../components/index";
 import useAuth from "@/hooks/useAuth";
 import Head from "next/head";
+import { useRecoilValue } from "recoil";
 import { Movie } from "../typings";
 import requests from "@/utils/requests";
-import { modalState } from "@/atoms/modalAtom";
-import { useRecoilValue } from "recoil";
 
 interface Props {
 	netflixOriginals: Movie[];
