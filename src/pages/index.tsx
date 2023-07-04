@@ -1,10 +1,12 @@
 import { modalState } from "@/atoms/modalAtom";
-import { Banner, Header, Modal, Row } from "../components/index";
+import { Banner, Header, Modal, Row, Plans } from "../components/index";
 import useAuth from "@/hooks/useAuth";
 import Head from "next/head";
 import { useRecoilValue } from "recoil";
 import { Movie } from "../typings";
 import requests from "@/utils/requests";
+import { getProducts, Product } from "@stripe/firestore-stripe-payments";
+import { payments } from "@/lib/stripe";
 
 interface Props {
 	netflixOriginals: Movie[];
@@ -15,14 +17,20 @@ interface Props {
 	horrorMovies: Movie[];
 	romanceMovies: Movie[];
 	documentaries: Movie[];
+	products: Product[];
 }
 
 export default function Home(props: Props) {
-	const { netflixOriginals, actionMovies, comedyMovies, documentaries, horrorMovies, romanceMovies, topRated, trendingNow } = props;
+	const { netflixOriginals, actionMovies, comedyMovies, documentaries, horrorMovies, romanceMovies, topRated, trendingNow, products } =
+		props;
 	const { loading } = useAuth();
 	const showModal = useRecoilValue(modalState);
+	const subscription = false;
+	console.log(products);
 
-	if (loading) return null;
+	if (loading || subscription === null) return null;
+
+	if (!subscription) return <Plans products={products} />;
 
 	return (
 		<div className="relative h-screen bg-gradient-to-b  lg:h-[140vh]">
@@ -57,6 +65,13 @@ export default function Home(props: Props) {
 }
 
 export const getServerSideProps = async () => {
+	const products = await getProducts(payments, {
+		includePrices: true,
+		activeOnly: true,
+	})
+		.then((res) => res)
+		.catch((error) => console.error(error.message));
+
 	const [netflixOriginals, trendingNow, topRated, actionMovies, comedyMovies, horrorMovies, romanceMovies, documentaries] =
 		await Promise.all([
 			fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
@@ -79,6 +94,7 @@ export const getServerSideProps = async () => {
 			horrorMovies: horrorMovies.results,
 			romanceMovies: romanceMovies.results,
 			documentaries: documentaries.results,
+			products,
 		},
 	};
 };

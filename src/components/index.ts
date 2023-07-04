@@ -19,3 +19,8 @@ export { Thumbnail } from "./Row/Thumbnail/Thumbnail";
  * Modal
  */
 export { Modal } from "./Modal/Modal";
+
+/**
+ * Plans
+ */
+export { Plans } from "./Plans/Plans";
