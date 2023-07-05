@@ -1,15 +1,16 @@
 import { modalState, movieState } from "@/atoms/modalAtom";
+import { GENRES, HD, LANGUAGE, MATCH_RATE, PLAY_BUTTON, VOTES } from "@/constants";
+import { db } from "../../../firebase";
+import { DocumentData, collection, deleteDoc, doc, onSnapshot, setDoc } from "firebase/firestore";
 import { CheckIcon, PlusIcon, ThumbUpIcon, VolumeOffIcon, VolumeUpIcon, XIcon } from "@heroicons/react/outline";
+import useAuth from "@/hooks/useAuth";
 import MuiModal from "@mui/material/Modal";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player/lazy";
 import { useRecoilState } from "recoil";
 import { Element, Genre, Movie } from "@/typings";
-import useAuth from "@/hooks/useAuth";
-import { DocumentData, collection, deleteDoc, doc, onSnapshot, setDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
-import toast, { Toaster } from "react-hot-toast";
 
 export function Modal() {
 	const [showModal, setShowModal] = useRecoilState(modalState);
@@ -53,14 +54,12 @@ export function Modal() {
 		fetchMovie();
 	}, [movie]);
 
-	// Find all the movies in the user's list
 	useEffect(() => {
 		if (user) {
 			return onSnapshot(collection(db, "customers", user.uid, "myList"), (snapshot) => setMovies(snapshot.docs));
 		}
 	}, [db, movie?.id]);
 
-	// Check if the movie is already in the user's list
 	useEffect(() => setAddedToList(movies.findIndex((result) => result.data().id === movie?.id) !== -1), [movies]);
 
 	const handleList = async () => {
@@ -112,7 +111,7 @@ export function Modal() {
 						<div className="flex space-x-2">
 							<button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
 								<FaPlay className="h-7 w-7 text-black" />
-								Play
+								{PLAY_BUTTON}
 							</button>
 							<button className="modalButton" onClick={handleList}>
 								{addedToList ? <CheckIcon className="h-7 w-7" /> : <PlusIcon className="h-7 w-7" />}
@@ -130,23 +129,26 @@ export function Modal() {
 				<div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
 					<div className="space-y-6 text-lg">
 						<div className="flex items-center space-x-2 text-sm">
-							<p className="font-semibold text-green-400">{movie!.vote_average * 10}% Match</p>
+							<p className="font-semibold text-green-400">
+								{Math.floor(movie!.vote_average * 10)}
+								{MATCH_RATE}
+							</p>
 							<p className="font-light">{movie?.release_date || movie?.first_air_date}</p>
-							<div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">HD</div>
+							<div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">{HD}</div>
 						</div>
 						<div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
 							<p className="w-5/6">{movie?.overview}</p>
 							<div className="flex flex-col space-y-3 text-sm">
 								<div>
-									<span className="text-[gray]">Genres:</span> {genres.map((genre) => genre.name).join(", ")}
+									<span className="text-[gray]">{GENRES}</span> {genres.map((genre) => genre.name).join(", ")}
 								</div>
 
 								<div>
-									<span className="text-[gray]">Original language:</span> {movie?.original_language}
+									<span className="text-[gray]">{LANGUAGE}</span> {movie?.original_language}
 								</div>
 
 								<div>
-									<span className="text-[gray]">Total votes:</span> {movie?.vote_count}
+									<span className="text-[gray]">{VOTES}</span> {movie?.vote_count}
 								</div>
 							</div>
 						</div>

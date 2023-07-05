@@ -1,3 +1,4 @@
+import { CURRENCY, DEVOICE_EXPLANATION, PRICE, QUALITY, RESOLUTION } from "@/constants";
 import { CheckIcon } from "@heroicons/react/outline";
 import { Product } from "@stripe/firestore-stripe-payments";
 
@@ -11,18 +12,19 @@ export function Table({ products, selectedPlan }: Props) {
 		<table>
 			<tbody className="divide-y divide-[gray]">
 				<tr className="tableRow">
-					<td className="tableDataTitle">Monthly price</td>
+					<td className="tableDataTitle">{PRICE}</td>
 					{products.map((product) => (
 						<td
 							key={product.id}
 							className={`tableDataFeature ${selectedPlan?.id === product.id ? "text-[#e50914]" : "text-[gray]"}`}
 						>
-							CAD{product.prices[0].unit_amount! / 100}
+							{CURRENCY}
+							{product.prices[0].unit_amount! / 100}
 						</td>
 					))}
 				</tr>
 				<tr className="tableRow">
-					<td className="tableDataTitle">Video quality</td>
+					<td className="tableDataTitle">{QUALITY}</td>
 					{products.map((product) => (
 						<td
 							key={product.id}
@@ -33,7 +35,7 @@ export function Table({ products, selectedPlan }: Props) {
 					))}
 				</tr>
 				<tr className="tableRow">
-					<td className="tableDataTitle">Resolution</td>
+					<td className="tableDataTitle">{RESOLUTION}</td>
 					{products.map((product) => (
 						<td
 							className={`tableDataFeature ${selectedPlan?.id === product.id ? "text-[#E50914]" : "text-[gray]"}`}
@@ -44,7 +46,7 @@ export function Table({ products, selectedPlan }: Props) {
 					))}
 				</tr>
 				<tr className="tableRow">
-					<td className="tableDataTitle">Watch on your TV, computer, mobile phone and tablet</td>
+					<td className="tableDataTitle">{DEVOICE_EXPLANATION}</td>
 					{products.map((product) => (
 						<td
 							className={`tableDataFeature ${selectedPlan?.id === product.id ? "text-[#E50914]" : "text-[gray]"}`}

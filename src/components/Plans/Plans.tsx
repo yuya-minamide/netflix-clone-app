@@ -1,11 +1,12 @@
+import { PLAN_TITLE, SIGN_OUT, SUB_CONTENTS } from "@/constants";
 import { CheckIcon } from "@heroicons/react/outline";
 import useAuth from "@/hooks/useAuth";
+import { Loader, Table } from "../index";
+import { loadCheckout } from "@/lib/stripe";
 import Head from "next/head";
 import Link from "next/link";
-import { Product } from "@stripe/firestore-stripe-payments";
-import { Loader, Table } from "../index";
 import { useState } from "react";
-import { loadCheckout } from "@/lib/stripe";
+import { Product } from "@stripe/firestore-stripe-payments";
 
 interface Props {
 	products: Product[];
@@ -41,21 +42,17 @@ export function Plans({ products }: Props) {
 					/>
 				</Link>
 				<button className="text-lg font-medium hover:underline" onClick={logout}>
-					Sign Out
+					{SIGN_OUT}
 				</button>
 			</header>
 			<main className="mx-auto max-w-5xl px-5 pt-28 pb-12 transition-all md:px-10">
-				<h1 className="mb-3 text-3xl font-medium">Choose the plan that is right for you</h1>
+				<h1 className="mb-3 text-3xl font-medium">{PLAN_TITLE}</h1>
 				<ul>
-					<li className="flex items-center gap-x-2 text-lg">
-						<CheckIcon className="h-7 w-7 text-[#E50914]" /> Watch all you want. Ad-free.
-					</li>
-					<li className="flex items-center gap-x-2 text-lg">
-						<CheckIcon className="h-7 w-7 text-[#E50914]" /> Recommendations just for you.
-					</li>
-					<li className="flex items-center gap-x-2 text-lg">
-						<CheckIcon className="h-7 w-7 text-[#E50914]" /> Change or cancel your plan anytime.
-					</li>
+					{SUB_CONTENTS.map((content, idx) => (
+						<li className="flex items-center gap-x-2 text-lg" key={idx}>
+							<CheckIcon className="h-7 w-7 text-[#E50914]" /> {content}
+						</li>
+					))}
 				</ul>
 
 				<div className="mt-4 flex flex-col space-y-4">

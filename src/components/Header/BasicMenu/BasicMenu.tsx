@@ -1,3 +1,4 @@
+import { NAV_MENU_CONTENTS, MENU_BUTTON } from "@/constants";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -25,7 +26,7 @@ export function BasicMenu() {
 				onClick={handleClick}
 				className="!capitalize !text-white"
 			>
-				Browse
+				{MENU_BUTTON}
 			</Button>
 			<Menu
 				id="basic-menu"
@@ -37,11 +38,11 @@ export function BasicMenu() {
 					"aria-labelledby": "basic-button",
 				}}
 			>
-				<MenuItem onClick={handleClose}>Home</MenuItem>
-				<MenuItem onClick={handleClose}>TV Shows</MenuItem>
-				<MenuItem onClick={handleClose}>Movies</MenuItem>
-				<MenuItem onClick={handleClose}>New & Popular</MenuItem>
-				<MenuItem onClick={handleClose}>My List</MenuItem>
+				{NAV_MENU_CONTENTS.map((content, idx) => (
+					<MenuItem key={idx} onClick={handleClose}>
+						{content}
+					</MenuItem>
+				))}
 			</Menu>
 		</div>
 	);

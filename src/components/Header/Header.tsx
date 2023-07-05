@@ -1,8 +1,9 @@
+import { KIDS } from "@/constants";
 import { BasicMenu, NavContents } from "../index";
 import Image from "next/image";
 import Link from "next/link";
-import { FiBell, FiSearch } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import { FiBell, FiSearch } from "react-icons/fi";
 
 export function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +35,7 @@ export function Header() {
 
 			<div className="flex items-center space-x-4 text-sm font-light">
 				<FiSearch className="hidden h-6 w-6 color-white sm:inline" />
-				<p className="hidden lg:inline">Kids</p>
+				<p className="hidden lg:inline">{KIDS}</p>
 				<FiBell className="h-6 w-6 color-white" />
 				<Link href="/account">
 					<Image src="/assets/netflix-avatar.png" alt="user-avatar" width={40} height={40} className="cursor-pointer rounded" />

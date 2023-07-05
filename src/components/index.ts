@@ -25,7 +25,7 @@ export { Modal } from "./Modal/Modal";
  * Plan page
  */
 export { Plans } from "./Plans/Plans";
-export { Table } from "./Table/Table";
+export { Table } from "./Plans/Table/Table";
 
 /**
  * Loader

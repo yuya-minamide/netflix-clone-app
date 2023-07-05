@@ -1,8 +1,9 @@
+import { ACCOUNT_INFORMATION_CONTENTS, ACCOUNT_TITLE, CHANGE_INFORMATION_CONTENTS, PASSWORD } from "@/constants";
 import useAuth from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
-import { useState } from "react";
 import { Loader } from "../index";
 import { goToBillingPortal } from "../../lib/stripe";
+import { useState } from "react";
 
 export function Membership() {
 	const { user } = useAuth();
@@ -19,7 +20,7 @@ export function Membership() {
 	return (
 		<div className="mt-6 grid grid-cols-1 gap-x-4 border px-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0">
 			<div className="space-y-2 py-4">
-				<h4 className="text-lg text-[gray]">Membership & Billing</h4>
+				<h4 className="text-lg text-[gray]">{ACCOUNT_TITLE}</h4>
 				<button
 					disabled={isBillingLoading || !subscription}
 					className="h-10 w-3/5 whitespace-nowrap bg-gray-300 py-2 text-sm font-medium text-black shadow-md hover:bg-gray-200 md:w-4/5 pointer"
@@ -33,11 +34,14 @@ export function Membership() {
 				<div className="flex flex-col justify-between border-b border-white/10 py-4 md:flex-row">
 					<div>
 						<p className="font-medium">{user?.email}</p>
-						<p className="text-[gray]">Password: *********</p>
+						<p className="text-[gray]">{PASSWORD}</p>
 					</div>
 					<div className="md:text-right">
-						<p className="membershipLink">Change email</p>
-						<p className="membershipLink">Change password</p>
+						{CHANGE_INFORMATION_CONTENTS.map((content, idx) => (
+							<p className="membershipLink" key={idx}>
+								{content}
+							</p>
+						))}
 					</div>
 				</div>
 
@@ -49,10 +53,11 @@ export function Membership() {
 						</p>
 					</div>
 					<div className="md:text-right">
-						<p className="membershipLink">Manage payment info</p>
-						<p className="membershipLink">Add backup payment method</p>
-						<p className="membershipLink">Billing Details</p>
-						<p className="membershipLink">Change billing day</p>
+						{ACCOUNT_INFORMATION_CONTENTS.map((content, idx) => (
+							<p className="membershipLink" key={idx}>
+								{content}
+							</p>
+						))}
 					</div>
 				</div>
 			</div>
