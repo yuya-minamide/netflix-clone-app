@@ -24,3 +24,13 @@ export { Modal } from "./Modal/Modal";
  * Plans
  */
 export { Plans } from "./Plans/Plans";
+
+/**
+ * Table
+ */
+export { Table } from "./Table/Table";
+
+/**
+ * Loader
+ */
+export { Loader } from "./Loader/Loader";

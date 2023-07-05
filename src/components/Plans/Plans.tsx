@@ -3,13 +3,26 @@ import useAuth from "@/hooks/useAuth";
 import Head from "next/head";
 import Link from "next/link";
 import { Product } from "@stripe/firestore-stripe-payments";
+import { Loader, Table } from "../index";
+import { useState } from "react";
+import { loadCheckout } from "@/lib/stripe";
 
 interface Props {
 	products: Product[];
 }
 
 export function Plans({ products }: Props) {
-	const { logout } = useAuth();
+	const { logout, user } = useAuth();
+	const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]);
+	const [isBillingLoading, setBillingLoading] = useState(false);
+
+	const subscribeToPlan = () => {
+		if (!user) return;
+
+		loadCheckout(selectedPlan?.prices[0].id!);
+		setBillingLoading(true);
+	};
+
 	return (
 		<div>
 			<Head>
@@ -48,15 +61,27 @@ export function Plans({ products }: Props) {
 				<div className="mt-4 flex flex-col space-y-4">
 					<div className="flex w-full items-center justify-center self-end md:w-3/5">
 						{products.map((product) => (
-							<div key={product.id} className="planBox">
+							<div
+								key={product.id}
+								className={`planBox ${selectedPlan?.id === product.id ? "opacity-100" : "opacity-60"}`}
+								onClick={() => setSelectedPlan(product)}
+							>
 								{product.name}
 							</div>
 						))}
 					</div>
 
-					{/* <Table/> */}
+					<Table products={products} selectedPlan={selectedPlan} />
 
-					<button>Subscribe</button>
+					<button
+						disabled={!selectedPlan || isBillingLoading}
+						className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
+							isBillingLoading && "opacity-60"
+						}`}
+						onClick={subscribeToPlan}
+					>
+						{isBillingLoading ? <Loader color="dark:fill-gray-300" /> : "Subscribe"}
+					</button>
 				</div>
 			</main>
 		</div>
