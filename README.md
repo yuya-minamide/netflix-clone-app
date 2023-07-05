@@ -21,8 +21,9 @@ In this time, I use Recoil to manage states, Stripe to add payment system.
  <img alt="recoil" src="public/assets/recoil-js.svg" width="40" height="40"/> 
  <img alt="material-ui" src="public/assets/material-ui-1.svg" width="40" height="40"/>
  <img alt="tailwind" src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" width="40" height="40"/> 
+ <img alt="firebase" src="public/assets/firebase.svg" height="40" width="40" />
  <img alt="vercel" src="public/assets/vercel.svg" height="40" width="40" />
- <img alt="vercel" src="public/assets/stripe.svg" height="40" width="40" />
+ <img alt="stripe" src="public/assets/stripe.svg" height="40" width="40" />
 </p>
 
 ## Contributors
