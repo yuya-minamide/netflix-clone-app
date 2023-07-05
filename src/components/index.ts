@@ -21,16 +21,17 @@ export { Thumbnail } from "./Row/Thumbnail/Thumbnail";
 export { Modal } from "./Modal/Modal";
 
 /**
- * Plans
+ * Plan page
  */
 export { Plans } from "./Plans/Plans";
-
-/**
- * Table
- */
 export { Table } from "./Table/Table";
 
 /**
  * Loader
  */
 export { Loader } from "./Loader/Loader";
+
+/**
+ * Account page
+ */
+export { Membership } from "./Membership/Membership";
