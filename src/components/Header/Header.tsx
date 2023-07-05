@@ -1,4 +1,4 @@
-import { NavContents } from "../index";
+import { BasicMenu, NavContents } from "../index";
 import Image from "next/image";
 import Link from "next/link";
 import { FiBell, FiSearch } from "react-icons/fi";
@@ -28,6 +28,7 @@ export function Header() {
 					className="cursor-pointer object-contain"
 				/>
 
+				<BasicMenu />
 				<NavContents />
 			</div>
 
