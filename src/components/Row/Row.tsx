@@ -2,12 +2,11 @@ import { Thumbnail } from "../index";
 import { useRef, useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Movie } from "@/typings";
+import { DocumentData } from "firebase/firestore";
 
 interface Props {
 	title: string;
-	movies: Movie[];
-	// When I use firebase I'll use it
-	// movie: Movie | DocumentData[]
+	movies: Movie[] | DocumentData[];
 }
 
 export function Row({ title, movies }: Props) {
